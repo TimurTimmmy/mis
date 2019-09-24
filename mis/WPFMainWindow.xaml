@@ -1,0 +1,77 @@
+﻿<Window x:Class="mis.WPFMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mis"
+        mc:Ignorable="d"
+         Title="WPFMainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Button x:Name="MkbButton" Width="50" HorizontalAlignment="Left" Content="МКБ-10" Click="MkbButton_Click"></Button>
+        <Button x:Name="ButtonDocs" Grid.Column="0" Grid.Row="0" Content="Docs" Width="50"  Click="ButtonDocs_Click"/>
+        <Button x:Name="ButtonPatients" Grid.Column="1" Grid.Row="0" Content="Patients" Width="50"  Click="ButtonPatients_Click"/>
+        
+        <TabControl Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
+            <TabItem >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Blue" />
+                        <TextBlock Margin="3">Visits</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="AddVisitButton" Width="30" HorizontalAlignment="Left" Content="+" Click="AddVisitButton_Click"></Button>
+                        <Button x:Name="RefreshVisits" Width="30" HorizontalAlignment="Right" Content="o" Click="RefreshVisits_Click"></Button>
+                        <DataGrid x:Name="VisitsGrid" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" 
+                                  IsReadOnly="True" AutoGenerateColumns="False" CanUserAddRows="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path = Id}" Width="0.1*"/>
+                                <DataGridTextColumn Header="ФИО" Binding="{Binding Path = Patient.Name}" Width="*" />
+                                <DataGridTextColumn Header="Дата визита" Binding="{Binding Path = VisitDate}" Width="0.35*" />
+                                <DataGridTextColumn Header="Время" Width="0.3*" />
+                                <DataGridTextColumn Header="Врач" Binding="{Binding Path = Doctor.Name}" Width="*" />
+                                <DataGridTextColumn Header="Кабинет" Binding="{Binding Path = Doctor.Office}" Width="0.3*" />
+                                <DataGridTextColumn Header="Телефон" Width="0.5*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid x:Name="VisitDetailsGrid" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="5" 
+                                  IsReadOnly="True" AutoGenerateColumns="False" CanUserAddRows="True">
+                            <DataGrid.Columns>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
